@@ -1,0 +1,363 @@
+/* General Body Styling */
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-image: url('mf4.jpg'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between; /* Space between logo and nav */
+    align-items: center;
+    padding: 1.2rem 1.875rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    width: 100%;
+}
+
+/* Logo Styling */
+.logo {
+    width: 5rem; /* Adjusted size for better fit */
+    height: auto;
+}
+
+/* Logo Hover Effect */
+.logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff0000;
+}
+
+/* Navigation Menu Styling */
+nav {
+    margin-left: auto; /* Pushes nav items to the right */
+    padding-right: 4rem; /* Add padding to fit within screen */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Align items in a row */
+    gap: 2rem; /* Space between each link */
+    
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'ITC Benguiat', serif;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+}
+
+nav ul li a:hover {
+    color: #ff0000;
+}
+
+
+/* Main Content Styling */
+.content {
+    text-align: center;
+    position: relative;
+    margin-top: 15rem; /* Increased to give more space for the fixed header */
+}
+
+.content h1 {
+    font-size: 9rem;
+    font-family: 'ITC Benguiat', serif;
+    color: #ff0000;
+    text-shadow: 0 0 1rem #100f0f, 0 0 2rem #ff0000, 0 0 3rem #0e0d0d;
+    animation: flicker 1.5s infinite;
+    margin-bottom: 0.5rem;
+
+}
+
+.content h2 {
+    font-size: 2.5rem;
+    font-family: 'ITC Benguiat', serif;
+    color: #fff;
+    text-shadow: 0 0 1rem #0b0a0a, 0 0 2rem #ff0000;
+    animation: flicker 1.5s infinite;
+    margin-bottom: 10rem;
+}
+
+.button-container {
+    margin-top: 1.5rem;
+}
+
+.event-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'ITC Benguiat', serif;
+}
+
+.event-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #1b1a1a, 0 0 40px #ff0000, 0 0 60px #ff0000;
+    background-color: #e92525;
+}
+
+
+/* Responsive Layout */
+@media (max-width: 1024px) {
+    .logo {
+        width: 5rem;
+    }
+
+    .content h1 {
+        font-size: 1.75rem;
+    }
+
+    .content h2 {
+        font-size: 1.25rem;
+    }
+
+    .event-button {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        gap: 1rem;
+        flex-direction: row; /* Ensures horizontal layout */
+        align-items: center;
+    }
+
+    .logo {
+        width: 3rem;
+    }
+
+    .content h1 {
+        font-size: 3.5rem;
+    }
+
+    .content h2 {
+        font-size: 1.5rem;
+    }
+
+    .event-button {
+        font-size: .875rem;
+    }
+}
+
+
+
+/* Flickering Animation */
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        opacity: 0;
+    }
+}
+
+
+
+
+
+/* Events Container Styling */
+.events-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row for large screens */
+    gap: 100px; /* Adjust gap between cards */
+    justify-items: center;
+    margin-top: 500px; /* Adjust spacing from the button */
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .events-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .events-container {
+        grid-template-columns: repeat(1, 1fr); /* 1 card per row for mobile screens */
+    }
+}
+
+/* Event Card Styling */
+.event-card {
+    width: 300px; /* Adjust card width */
+    height: 400px; /* Adjust card height */
+    perspective: 1000px;
+    position: relative;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s ease-in-out;
+}
+
+.event-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Glowing Border on Hover */
+.event-card:hover {
+    box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.8);
+}
+
+.card-front,.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Front Side */
+.card-front {
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-front h3 {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+    position: absolute;
+    top: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+/* Back Side */
+.card-back {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    transform: rotateY(180deg);
+}
+
+.card-back p {
+    font-size: 16.5px;
+    color: #fff;
+}
+
+/* Button Styling */
+.button-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.event-button {
+    font-size: 30px;
+    padding: 10px 40px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.event-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #1b1a1a, 0 0 40px #ff0000, 0 0 60px #ff0000;
+    background-color: #e92525;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+/* Register Button Styling */
+.register-button {
+    font-family: 'ITC Benguiat', serif;
+    font-size: 1rem; /* Reduced size for better scaling */
+    display: inline-block; 
+    margin: 0.5rem auto; /* Reduced margin */
+    padding: 0.75rem 1rem; /* Adjusted padding for smaller button size */
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 0.75rem; /* Rounded corners */
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-top: 2rem; /* Adjusted spacing from the elements above */
+    align-self: center;
+}
+
+/* Glow Effect on Hover */
+.register-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0.75rem #ff0000, 0 0 1.5rem #ff0000, 0 0 2.25rem #ff0000;
+}
+
+
+/* Contact Section Styling */
+.contact-section {
+    background-color: #000; /* Black background */
+    padding: 200px 10px;
+    text-align: center;
+    color: #fff;
+    font-family: 'ITC Benguiat', serif;
+    margin-top: 150px;
+   
+}
+
+.contact-section h2 {
+    font-size: 2em;
+    color: #ff0000;
+    text-shadow: 0 0 20px #100f0f, 0 0 40px #ff0000;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    margin-top: -190px;
+}
+
+#contact h2 {
+    animation: none; /* Removes flickering effect */
+    text-shadow: 0 0 20px #000; /* Adjust shadow for a better look */
+}
