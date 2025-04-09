@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Task Manager</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: #4285f4;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        .task-item {
+            background: #f5f5f5;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        .task-form {
+            margin-top: 20px;
+        }
+        input, button {
+            padding: 8px;
+            margin-right: 5px;
+        }
+        button {
+            background: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+       
+        
+    </style>
+</head>
+<body ng-controller="TaskController">
+    <div class="header">
+            <h1>Task Manager</h1> 
+    </div>
+    
+    
+    <ul class="task-list">
+        <li ng-repeat="task in tasks" class="task-item">
+            {{task.text}}
+            <button ng-click="removeTask($index)">Remove</button>
+        </li>
+    </ul>
+    
+    <div class="task-form">
+        <input type="text" ng-model="newTask" placeholder="Enter new task">
+        <button ng-click="addTask()">Add Task</button>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        
+        app.controller('TaskController', function($scope) {
+            // Initialize tasks array
+            $scope.tasks = [
+                { text: "Learn AngularJS" },
+                { text: "Build an app" }
+            ];
+            
+            // Initialize newTask
+            $scope.newTask = "";
+            
+            // Add task function
+            $scope.addTask = function() {
+                if ($scope.newTask.trim() !== "") {
+                    $scope.tasks.push({
+                        text: $scope.newTask
+                    });
+                    $scope.newTask = ""; // Clear input
+                }
+            };
+            
+            // Remove task function
+            $scope.removeTask = function(index) {
+                $scope.tasks.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+</html>
